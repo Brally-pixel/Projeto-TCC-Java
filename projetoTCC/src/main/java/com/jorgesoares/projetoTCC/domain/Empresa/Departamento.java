@@ -1,4 +1,4 @@
-package com.jorgesoares.projetoTCC.domain;
+package com.jorgesoares.projetoTCC.domain.Empresa;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class Departamento implements Serializable {
@@ -80,17 +79,12 @@ public class Departamento implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Departamento that = (Departamento) o;
-        return Objects.equals(id, that.id);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return super.hashCode();
     }
-
-
 }

@@ -1,6 +1,6 @@
 package com.jorgesoares.projetoTCC.repositories;
 
-import com.jorgesoares.projetoTCC.domain.Departamento;
+import com.jorgesoares.projetoTCC.domain.Empresa.Departamento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,8 @@
-package com.jorgesoares.projetoTCC.domain;
+package com.jorgesoares.projetoTCC.domain.Empresa;
 
+import com.jorgesoares.projetoTCC.domain.Cidade;
+import com.jorgesoares.projetoTCC.domain.Empresa.Departamento;
+import com.jorgesoares.projetoTCC.domain.Estado;
 import com.jorgesoares.projetoTCC.domain.enums.NivelEnsino;
 import com.jorgesoares.projetoTCC.domain.enums.Turno;
 
@@ -12,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 public class Funcionario implements Serializable {
@@ -42,7 +44,7 @@ public class Funcionario implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "cidade_id")
-    private Cidade cidades;
+    private Cidade cidade;
 
     @OneToOne
     @JoinColumn(name = "estado_id")
@@ -55,7 +57,7 @@ public class Funcionario implements Serializable {
     public Funcionario() {
     }
 
-    public Funcionario(Integer id, String nome, String cpf, String rg, String endereco, String numero, String complemento, Integer CEP, String bairro, Turno turno, String email, NivelEnsino nivelEnsino, String sexo, Date dataNascimento, String estadoCivil, String numeroTelefone, String statusFuncio, Date dataCadastro, Cidade cidades, Estado estado) {
+    public Funcionario(Integer id, String nome, String cpf, String rg, String endereco, String numero, String complemento, Integer CEP, String bairro, Turno turno, String email, NivelEnsino nivelEnsino, String sexo, Date dataNascimento, String estadoCivil, String numeroTelefone, String statusFuncio, Date dataCadastro, Cidade cidade, Estado estado) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -74,7 +76,7 @@ public class Funcionario implements Serializable {
         this.numeroTelefone = numeroTelefone;
         this.statusFuncio = statusFuncio;
         this.dataCadastro = dataCadastro;
-        this.cidades = cidades;
+        this.cidade = cidade;
         this.estado = estado;
     }
 
@@ -222,12 +224,12 @@ public class Funcionario implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
-    public Cidade getCidades() {
-        return cidades;
+    public Cidade getCidade() {
+        return cidade;
     }
 
-    public void setCidades(Cidade cidades) {
-        this.cidades = cidades;
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
     public Estado getEstado() {
@@ -246,16 +248,13 @@ public class Funcionario implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Funcionario that = (Funcionario) o;
-        return Objects.equals(id, that.id);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return super.hashCode();
     }
 
 
