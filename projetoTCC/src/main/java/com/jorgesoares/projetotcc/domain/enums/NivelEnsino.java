@@ -1,15 +1,17 @@
-package com.jorgesoares.projetoTCC.domain.enums;
+package com.jorgesoares.projetotcc.domain.enums;
 
-public enum Turno {
+public enum NivelEnsino {
 
-    MANHA(1, "Manhã"),
-    TARDE(2, "Tarde"),
-    NOITE(3, "Noite");
+    FUNDAMENTAL(1, "Ensino Fundamental"),
+    MEDIO(2, "Ensino Medio"),
+    GRADUACAO(3, "Graduação"),
+    TECNOLOGO(3, "Tecnologo"),
+    DOUTORADO(3, "Doutorado");
 
     private int cod;
     private String descricao;
 
-    private Turno(int cod, String descricao) {
+    private NivelEnsino(int cod, String descricao) {
         this.cod = cod;
         this.descricao = descricao;
     }
@@ -21,11 +23,11 @@ public enum Turno {
     public String getDescricao() {
         return descricao;
     }
-    public static Turno toEnum(Integer cod) {
+    public static NivelEnsino toEnum(Integer cod) {
         if (cod == null){
             return null;
         }
-        for (Turno x : Turno.values()){
+        for (NivelEnsino x : NivelEnsino.values()){
             if (cod.equals(x.getCod())){
                 return x;
             }

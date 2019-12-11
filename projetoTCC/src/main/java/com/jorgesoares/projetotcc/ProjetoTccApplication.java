@@ -1,4 +1,4 @@
-package com.jorgesoares.projetoTCC;
+package com.jorgesoares.projetotcc;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -1,6 +1,4 @@
-package com.jorgesoares.projetoTCC.domain.Cliente;
-
-import com.jorgesoares.projetoTCC.domain.Cliente.CadastroCliente;
+package com.jorgesoares.projetotcc.domain.cliente;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

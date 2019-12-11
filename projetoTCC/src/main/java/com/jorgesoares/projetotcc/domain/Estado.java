@@ -1,4 +1,4 @@
-package com.jorgesoares.projetoTCC.domain;
+package com.jorgesoares.projetotcc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class Estado implements Serializable {

@@ -1,4 +1,4 @@
-package com.jorgesoares.projetoTCC.domain.Fornecedor;
+package com.jorgesoares.projetotcc.domain.fornecedor;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

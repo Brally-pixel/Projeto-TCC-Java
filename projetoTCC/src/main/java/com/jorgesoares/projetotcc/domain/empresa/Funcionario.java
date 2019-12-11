@@ -1,10 +1,9 @@
-package com.jorgesoares.projetoTCC.domain.Empresa;
+package com.jorgesoares.projetotcc.domain.empresa;
 
-import com.jorgesoares.projetoTCC.domain.Cidade;
-import com.jorgesoares.projetoTCC.domain.Empresa.Departamento;
-import com.jorgesoares.projetoTCC.domain.Estado;
-import com.jorgesoares.projetoTCC.domain.enums.NivelEnsino;
-import com.jorgesoares.projetoTCC.domain.enums.Turno;
+import com.jorgesoares.projetotcc.domain.Cidade;
+import com.jorgesoares.projetotcc.domain.Estado;
+import com.jorgesoares.projetotcc.domain.enums.NivelEnsino;
+import com.jorgesoares.projetotcc.domain.enums.Turno;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,24 +22,24 @@ public class Funcionario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String nome;
-    private String cpf;
-    private String rg;
-    private String endereco;
-    private String numero;
-    private String complemento;
-    private Integer CEP;
-    private String bairro;
-    private Turno turno;
-    private String email;
+    private Integer     id;
+    private String      nome;
+    private String      cpf;
+    private String      rg;
+    private String      endereco;
+    private String      numero;
+    private String      complemento;
+    private Integer     cep;
+    private String      bairro;
+    private Turno       turno;
+    private String      email;
     private NivelEnsino nivelEnsino;
-    private String sexo;
-    private Date dataNascimento;
-    private String estadoCivil;
-    private String numeroTelefone;
-    private String statusFuncio;
-    private Date dataCadastro;
+    private String      sexo;
+    private Date        dataNascimento;
+    private String      estadoCivil;
+    private String      numeroTelefone;
+    private String      statusFuncio;
+    private Date        dataCadastro;
 
     @OneToOne
     @JoinColumn(name = "cidade_id")
@@ -57,7 +56,7 @@ public class Funcionario implements Serializable {
     public Funcionario() {
     }
 
-    public Funcionario(Integer id, String nome, String cpf, String rg, String endereco, String numero, String complemento, Integer CEP, String bairro, Turno turno, String email, NivelEnsino nivelEnsino, String sexo, Date dataNascimento, String estadoCivil, String numeroTelefone, String statusFuncio, Date dataCadastro, Cidade cidade, Estado estado) {
+    public Funcionario(Integer id, String nome, String cpf, String rg, String endereco, String numero, String complemento, Integer cep, String bairro, Turno turno, String email, NivelEnsino nivelEnsino, String sexo, Date dataNascimento, String estadoCivil, String numeroTelefone, String statusFuncio, Date dataCadastro, Cidade cidade, Estado estado) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -65,7 +64,7 @@ public class Funcionario implements Serializable {
         this.endereco = endereco;
         this.numero = numero;
         this.complemento = complemento;
-        this.CEP = CEP;
+        this.cep = cep;
         this.bairro = bairro;
         this.turno = turno;
         this.email = email;
@@ -136,12 +135,12 @@ public class Funcionario implements Serializable {
         this.complemento = complemento;
     }
 
-    public Integer getCEP() {
-        return CEP;
+    public Integer getCep() {
+        return cep;
     }
 
-    public void setCEP(Integer CEP) {
-        this.CEP = CEP;
+    public void setCep(Integer cep) {
+        this.cep = cep;
     }
 
     public String getBairro() {

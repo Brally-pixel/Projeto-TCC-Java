@@ -1,4 +1,4 @@
-package com.jorgesoares.projetoTCC.domain.Empresa;
+package com.jorgesoares.projetotcc.domain.empresa;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

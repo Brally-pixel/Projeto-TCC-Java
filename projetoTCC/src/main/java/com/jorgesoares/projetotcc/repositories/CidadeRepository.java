@@ -1,6 +1,6 @@
-package com.jorgesoares.projetoTCC.repositories;
+package com.jorgesoares.projetotcc.repositories;
 
-import com.jorgesoares.projetoTCC.domain.Cidade;
+import com.jorgesoares.projetotcc.domain.Cidade;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

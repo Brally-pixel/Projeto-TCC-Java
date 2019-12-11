@@ -1,7 +1,7 @@
-package com.jorgesoares.projetoTCC.domain.Fornecedor;
+package com.jorgesoares.projetotcc.domain.fornecedor;
 
-import com.jorgesoares.projetoTCC.domain.Cidade;
-import com.jorgesoares.projetoTCC.domain.Estado;
+import com.jorgesoares.projetotcc.domain.Cidade;
+import com.jorgesoares.projetotcc.domain.Estado;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

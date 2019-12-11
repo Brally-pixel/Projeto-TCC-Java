@@ -1,4 +1,4 @@
-package com.jorgesoares.projetoTCC.projetoTCC;
+package com.jorgesoares.projetotcc.projetoTCC;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
