@@ -15,23 +15,13 @@ public class PagamentoFuncionario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Double valor;
-    private Date data;
-    private String situacao;
+    private Double  valor;
+    private Date    data;
+    private String  situacao;
 
     @ManyToOne
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
-
-    public PagamentoFuncionario() {}
-
-    public PagamentoFuncionario(Integer id, Double valor, Date data, String situacao, Funcionario funcionario) {
-        this.id = id;
-        this.valor = valor;
-        this.data = data;
-        this.situacao = situacao;
-        this.funcionario = funcionario;
-    }
 
     public Integer getId() {
         return id;
@@ -74,6 +64,31 @@ public class PagamentoFuncionario implements Serializable {
     }
 
 
+    public PagamentoFuncionario withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public PagamentoFuncionario withValor(Double valor) {
+        this.valor = valor;
+        return this;
+    }
+
+    public PagamentoFuncionario withData(Date data) {
+        this.data = data;
+        return this;
+    }
+
+    public PagamentoFuncionario withSituacao(String situacao) {
+        this.situacao = situacao;
+        return this;
+    }
+
+    public PagamentoFuncionario withFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+        return this;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
@@ -83,4 +98,6 @@ public class PagamentoFuncionario implements Serializable {
     public int hashCode() {
         return super.hashCode();
     }
+
+
 }

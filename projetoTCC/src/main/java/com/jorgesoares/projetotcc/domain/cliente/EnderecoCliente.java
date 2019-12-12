@@ -14,27 +14,15 @@ public class EnderecoCliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String endereco;
-    private String numero;
-    private String complemento;
-    private Integer CEP;
-    private String bairro;
+    private String  endereco;
+    private String  numero;
+    private String  complemento;
+    private Integer cep;
+    private String  bairro;
 
     @OneToOne
     @JoinColumn(name = "ID_Cliente")
-    private CadastroCliente id_nome;
-
-    public EnderecoCliente (){}
-
-    public EnderecoCliente(Integer id, String endereco, String numero, String complemento, Integer CEP, String bairro, CadastroCliente id_nome) {
-        this.id = id;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.CEP = CEP;
-        this.bairro = bairro;
-        this.id_nome = id_nome;
-    }
+    private CadastroCliente idNome;
 
     public Integer getId() {
         return id;
@@ -68,12 +56,12 @@ public class EnderecoCliente implements Serializable {
         this.complemento = complemento;
     }
 
-    public Integer getCEP() {
-        return CEP;
+    public Integer getCep() {
+        return cep;
     }
 
-    public void setCEP(Integer CEP) {
-        this.CEP = CEP;
+    public void setCep(Integer cep) {
+        this.cep = cep;
     }
 
     public String getBairro() {
@@ -84,11 +72,58 @@ public class EnderecoCliente implements Serializable {
         this.bairro = bairro;
     }
 
-    public CadastroCliente getId_nome() {
-        return id_nome;
+    public CadastroCliente getIdNome() {
+        return idNome;
     }
 
-    public void setId_nome(CadastroCliente id_nome) {
-        this.id_nome = id_nome;
+    public void setIdNome(CadastroCliente idNome) {
+        this.idNome = idNome;
     }
+
+
+    public EnderecoCliente withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public EnderecoCliente withEndereco(String endereco) {
+        this.endereco = endereco;
+        return this;
+    }
+
+    public EnderecoCliente withNumero(String numero) {
+        this.numero = numero;
+        return this;
+    }
+
+    public EnderecoCliente withComplemento(String complemento) {
+        this.complemento = complemento;
+        return this;
+    }
+
+    public EnderecoCliente withCep(Integer cep) {
+        this.cep = cep;
+        return this;
+    }
+
+    public EnderecoCliente withBairro(String bairro) {
+        this.bairro = bairro;
+        return this;
+    }
+
+    public EnderecoCliente withIdNome(CadastroCliente idNome) {
+        this.idNome = idNome;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
 }

@@ -20,23 +20,13 @@ public class Departamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String descricao;
-    private Date dataCadastro;
-    private String status;
+    private String  descricao;
+    private Date    dataCadastro;
+    private String  status;
 
     @JsonIgnore
     @OneToMany(mappedBy = "Funcionarios")
     private List<Funcionario> funcionarios = new ArrayList<>();
-
-    public Departamento() {
-    }
-
-    public Departamento(Integer id, String descricao, Date dataCadastro, String status) {
-        this.id = id;
-        this.descricao = descricao;
-        this.dataCadastro = dataCadastro;
-        this.status = status;
-    }
 
     public Integer getId() {
         return id;
@@ -76,6 +66,31 @@ public class Departamento implements Serializable {
 
     public void setFuncionarios(List<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
+    }
+
+    public Departamento withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Departamento withDescricao(String descricao) {
+        this.descricao = descricao;
+        return this;
+    }
+
+    public Departamento withDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+        return this;
+    }
+
+    public Departamento withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public Departamento withFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+        return this;
     }
 
     @Override

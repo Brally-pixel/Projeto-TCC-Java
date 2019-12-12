@@ -16,14 +16,11 @@ public class Cidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
+    private String  nome;
 
     @ManyToOne
     @JoinColumn(name = "estado_id")
     private Estado estado;
-
-    public Cidade() {
-    }
 
     public Cidade(Integer id, String nome) {
         this.id = id;
@@ -54,6 +51,22 @@ public class Cidade implements Serializable {
         this.estado = estado;
     }
 
+
+    public Cidade withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Cidade withNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
+    public Cidade withEstado(Estado estado) {
+        this.estado = estado;
+        return this;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
@@ -63,6 +76,4 @@ public class Cidade implements Serializable {
     public int hashCode() {
         return super.hashCode();
     }
-
-
 }

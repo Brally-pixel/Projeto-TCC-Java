@@ -14,32 +14,17 @@ public class ContatoFornecedor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idContato;
-    private String nomeContato;
-    private String sexo;
+    private String  nomeContato;
+    private String  sexo;
     private Integer fax;
-    private Date dataContato;
-    private String emailContato;
-    private String telefone;
-    private String celular;
-    private String status;
+    private Date    dataContato;
+    private String  emailContato;
+    private String  telefone;
+    private String  celular;
+    private String  status;
 
     @JoinColumn(name = "ID_Fornecedor")
     private Fornecedor fornecedor;
-
-    public ContatoFornecedor (){}
-
-    public ContatoFornecedor(Integer idContato, String nomeContato, String sexo, Integer fax, Date dataContato, String emailContato, String telefone, String celular, String status, Fornecedor fornecedor) {
-        this.idContato = idContato;
-        this.nomeContato = nomeContato;
-        this.sexo = sexo;
-        this.fax = fax;
-        this.dataContato = dataContato;
-        this.emailContato = emailContato;
-        this.telefone = telefone;
-        this.celular = celular;
-        this.status = status;
-        this.fornecedor = fornecedor;
-    }
 
     public Integer getIdContato() {
         return idContato;
@@ -119,6 +104,56 @@ public class ContatoFornecedor implements Serializable {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
+    }
+
+    public ContatoFornecedor withIdContato(Integer idContato) {
+        this.idContato = idContato;
+        return this;
+    }
+
+    public ContatoFornecedor withNomeContato(String nomeContato) {
+        this.nomeContato = nomeContato;
+        return this;
+    }
+
+    public ContatoFornecedor withSexo(String sexo) {
+        this.sexo = sexo;
+        return this;
+    }
+
+    public ContatoFornecedor withFax(Integer fax) {
+        this.fax = fax;
+        return this;
+    }
+
+    public ContatoFornecedor withDataContato(Date dataContato) {
+        this.dataContato = dataContato;
+        return this;
+    }
+
+    public ContatoFornecedor withEmailContato(String emailContato) {
+        this.emailContato = emailContato;
+        return this;
+    }
+
+    public ContatoFornecedor withTelefone(String telefone) {
+        this.telefone = telefone;
+        return this;
+    }
+
+    public ContatoFornecedor withCelular(String celular) {
+        this.celular = celular;
+        return this;
+    }
+
+    public ContatoFornecedor withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public ContatoFornecedor withFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+        return this;
     }
 
     @Override

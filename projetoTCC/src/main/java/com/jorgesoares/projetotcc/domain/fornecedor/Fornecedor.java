@@ -40,27 +40,6 @@ public class Fornecedor implements Serializable {
     @JoinColumn(name = "estado_id")
     private Estado estado;
 
-    public Fornecedor (){}
-
-    public Fornecedor(Integer idFornecedor, String nomeFantasia, String razaoSocial, String cnpj, String siteEmpresa, String endereco, String numero, String complemento, Integer cep, String bairro, String email, String telefone, Date dataCadastro, String status, Cidade cidade, Estado estado) {
-        this.idFornecedor = idFornecedor;
-        this.nomeFantasia = nomeFantasia;
-        this.razaoSocial = razaoSocial;
-        this.cnpj = cnpj;
-        this.siteEmpresa = siteEmpresa;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.cep = cep;
-        this.bairro = bairro;
-        this.email = email;
-        this.telefone = telefone;
-        this.dataCadastro = dataCadastro;
-        this.status = status;
-        this.cidade = cidade;
-        this.estado = estado;
-    }
-
     public Integer getIdFornecedor() {
         return idFornecedor;
     }
@@ -187,6 +166,86 @@ public class Fornecedor implements Serializable {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public Fornecedor withIdFornecedor(Integer idFornecedor) {
+        this.idFornecedor = idFornecedor;
+        return this;
+    }
+
+    public Fornecedor withNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+        return this;
+    }
+
+    public Fornecedor withRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+        return this;
+    }
+
+    public Fornecedor withCnpj(String cnpj) {
+        this.cnpj = cnpj;
+        return this;
+    }
+
+    public Fornecedor withSiteEmpresa(String siteEmpresa) {
+        this.siteEmpresa = siteEmpresa;
+        return this;
+    }
+
+    public Fornecedor withEndereco(String endereco) {
+        this.endereco = endereco;
+        return this;
+    }
+
+    public Fornecedor withNumero(String numero) {
+        this.numero = numero;
+        return this;
+    }
+
+    public Fornecedor withComplemento(String complemento) {
+        this.complemento = complemento;
+        return this;
+    }
+
+    public Fornecedor withCep(Integer cep) {
+        this.cep = cep;
+        return this;
+    }
+
+    public Fornecedor withBairro(String bairro) {
+        this.bairro = bairro;
+        return this;
+    }
+
+    public Fornecedor withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public Fornecedor withTelefone(String telefone) {
+        this.telefone = telefone;
+        return this;
+    }
+
+    public Fornecedor withDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+        return this;
+    }
+
+    public Fornecedor withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public Fornecedor withCidade(Cidade cidade) {
+        this.cidade = cidade;
+        return this;
+    }
+
+    public Fornecedor withEstado(Estado estado) {
+        this.estado = estado;
+        return this;
     }
 
     @Override

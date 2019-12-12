@@ -19,21 +19,12 @@ public class Estado implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String uf;
-    private String estado;
+    private String  uf;
+    private String  nomeEstado;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "estado")
+    @OneToMany(mappedBy = "nomeEstado")
     private List<Cidade> cidades = new ArrayList<>();
-
-    public Estado() {
-    }
-
-    public Estado(Integer id, String uf, String estado) {
-        this.id = id;
-        this.uf = uf;
-        this.estado = estado;
-    }
 
     public Integer getId() {
         return id;
@@ -51,12 +42,12 @@ public class Estado implements Serializable {
         this.uf = uf;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getNomeEstado() {
+        return nomeEstado;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setNomeEstado(String nomeEstado) {
+        this.nomeEstado = nomeEstado;
     }
 
     public List<Cidade> getCidades() {
@@ -77,5 +68,25 @@ public class Estado implements Serializable {
         return super.hashCode();
     }
 
+
+    public Estado withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Estado withUf(String uf) {
+        this.uf = uf;
+        return this;
+    }
+
+    public Estado withNomeEstado(String nomeEstado) {
+        this.nomeEstado = nomeEstado;
+        return this;
+    }
+
+    public Estado withCidades(List<Cidade> cidades) {
+        this.cidades = cidades;
+        return this;
+    }
 
 }

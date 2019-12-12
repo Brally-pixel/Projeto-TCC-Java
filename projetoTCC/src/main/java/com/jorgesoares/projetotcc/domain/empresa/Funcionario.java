@@ -53,32 +53,6 @@ public class Funcionario implements Serializable {
     @JoinColumn(name = "departamento_id")
     private Departamento departamento;
 
-    public Funcionario() {
-    }
-
-    public Funcionario(Integer id, String nome, String cpf, String rg, String endereco, String numero, String complemento, Integer cep, String bairro, Turno turno, String email, NivelEnsino nivelEnsino, String sexo, Date dataNascimento, String estadoCivil, String numeroTelefone, String statusFuncio, Date dataCadastro, Cidade cidade, Estado estado) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.cep = cep;
-        this.bairro = bairro;
-        this.turno = turno;
-        this.email = email;
-        this.nivelEnsino = nivelEnsino;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
-        this.estadoCivil = estadoCivil;
-        this.numeroTelefone = numeroTelefone;
-        this.statusFuncio = statusFuncio;
-        this.dataCadastro = dataCadastro;
-        this.cidade = cidade;
-        this.estado = estado;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -238,12 +212,118 @@ public class Funcionario implements Serializable {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
     public Departamento getDepartamento() {
         return departamento;
     }
 
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
+    }
+
+    public Funcionario withId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Funcionario withNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
+    public Funcionario withCpf(String cpf) {
+        this.cpf = cpf;
+        return this;
+    }
+
+    public Funcionario withRg(String rg) {
+        this.rg = rg;
+        return this;
+    }
+
+    public Funcionario withEndereco(String endereco) {
+        this.endereco = endereco;
+        return this;
+    }
+
+    public Funcionario withNumero(String numero) {
+        this.numero = numero;
+        return this;
+    }
+
+    public Funcionario withComplemento(String complemento) {
+        this.complemento = complemento;
+        return this;
+    }
+
+    public Funcionario withCep(Integer cep) {
+        this.cep = cep;
+        return this;
+    }
+
+    public Funcionario withBairro(String bairro) {
+        this.bairro = bairro;
+        return this;
+    }
+
+    public Funcionario withTurno(Turno turno) {
+        this.turno = turno;
+        return this;
+    }
+
+    public Funcionario withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public Funcionario withNivelEnsino(NivelEnsino nivelEnsino) {
+        this.nivelEnsino = nivelEnsino;
+        return this;
+    }
+
+    public Funcionario withSexo(String sexo) {
+        this.sexo = sexo;
+        return this;
+    }
+
+    public Funcionario withDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+        return this;
+    }
+
+    public Funcionario withEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+        return this;
+    }
+
+    public Funcionario withNumeroTelefone(String numeroTelefone) {
+        this.numeroTelefone = numeroTelefone;
+        return this;
+    }
+
+    public Funcionario withStatusFuncio(String statusFuncio) {
+        this.statusFuncio = statusFuncio;
+        return this;
+    }
+
+    public Funcionario withDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+        return this;
+    }
+
+    public Funcionario withCidade(Cidade cidade) {
+        this.cidade = cidade;
+        return this;
+    }
+
+    public Funcionario withEstado(Estado estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public Funcionario withDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+        return this;
     }
 
     @Override
@@ -255,6 +335,5 @@ public class Funcionario implements Serializable {
     public int hashCode() {
         return super.hashCode();
     }
-
 
 }
