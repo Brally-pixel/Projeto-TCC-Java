@@ -1,0 +1,108 @@
+@startuml
+
+'diagram title'
+title Diagrama 01 - Cadastro de Cliente
+
+'a brief description of the diagram'
+legend top
+-- \t**Abstract:**\t --
+Eu como funcionario da Loja desejo cadastrar meus clientes.
+end legend
+
+'a list of the actors - type actor|participant|database|queue to get template'
+actor "Site" as Site
+box "Backend"
+    actor "Back" as Backend
+end box
+actor "Banco De Dados" as BD
+
+note right of Site #plum
+    Site ira encaminhar os seguintes campos
+   para serem guardados no Banco de Dados:
+
+      id;
+      nome;
+      dataNascimento;
+      dataCadastro;
+      cpf;
+      estadoCivil;
+      sexo;
+      email;
+      numeroTelefone;
+      status;
+
+     Com acressimo dos campos de Endereco:
+     
+      id;
+      endereco;
+      numero;
+      complemento;
+      cep;
+      bairro;
+
+     Acionando o Endpoint: POST /clientes/cadastro
+
+    State changes: None
+end note
+
+'interactions'
+
+note right of Site
+**Nota do Desenvolvedor**
+Campos obrigatorios terao validacoes antes de chamar o **backend**.
+
+end note
+
+activate Site
+Site -> Backend: ""POST /clientes/cadastro""
+        activate Backend
+            note right of Backend
+                **Nota do desenvolvedor:**
+                     Os campos obrigatorios serão checados novamente.
+            end note
+            activate BD
+                Backend -> BD : Cadastro
+                note right of BD
+                **Nota do Desenvolvedor**
+
+                Nesse momento é feito o cadastrado no Banco de Dados.
+                end note
+                BD -> Backend: Sucesso
+            alt #transparent Cadastro concluido com sucesso
+
+                Backend -> Site: Confirmation
+                note left of Backend
+                **Nota do Desenvolvedor**
+
+                Mensagem na tela:
+                **Cadastro efetuado com sucesso**
+
+                end note
+
+
+            else Verifica se cliente já é cadastrado
+            Backend -> Site: DebtNotFound
+                rnote left of Backend
+                **Nota do Desenvolvedor**
+                    Http Status: 500
+
+                    Mensagem na tela:
+                    **Cliente ja cadastrado**
+                end note
+               BD -> Backend: Erro inesperado
+               Backend -> Site : Erro inesperado
+            else  error 422
+                rnote right of Site
+                    Http Status: 422
+                    **Nota do Desenvolvedor**
+
+                    Pode aparecer qualquer mensagem
+                    Desde Banco fora ou erro de conexao
+                    com internet.
+                end note
+                Backend -> Site: Unexpected error
+            end alt
+        deactivate Backend
+deactivate Site
+center footer \n\n\n\n\n\n\n\n
+@enduml
