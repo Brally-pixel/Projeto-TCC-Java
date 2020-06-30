@@ -1,7 +1,7 @@
 package com.jorgesoares.projetotcc.repositories.fornecedor;
 
-import com.jorgesoares.projetotcc.domain.fornecedor.Fornecedor;
+import com.jorgesoares.projetotcc.entity.Provider;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
+public interface FornecedorRepository extends JpaRepository<Provider, Long> {
 }

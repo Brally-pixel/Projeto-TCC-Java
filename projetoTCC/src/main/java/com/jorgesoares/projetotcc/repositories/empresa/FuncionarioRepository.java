@@ -1,10 +1,10 @@
 package com.jorgesoares.projetotcc.repositories.empresa;
 
-import com.jorgesoares.projetotcc.domain.empresa.Funcionario;
+import com.jorgesoares.projetotcc.entity.FuncionarioRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer> {
+public interface FuncionarioRepository extends JpaRepository<FuncionarioRequest, Integer> {
 
 }

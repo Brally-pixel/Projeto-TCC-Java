@@ -1,4 +1,4 @@
-package com.jorgesoares.projetotcc.domain.empresa;
+package com.jorgesoares.projetotcc.entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,20 +8,20 @@ import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Date;
 
-public class PagamentoFuncionario implements Serializable {
+public class PagamentoFuncionarioRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Double  valor;
-    private Date    data;
-    private String  situacao;
+    private Double valor;
+    private Date data;
+    private String situacao;
 
     @ManyToOne
     @JoinColumn(name = "funcionario_id")
-    private Funcionario funcionario;
+    private FuncionarioRequest funcionario;
 
     public Integer getId() {
         return id;
@@ -55,36 +55,36 @@ public class PagamentoFuncionario implements Serializable {
         this.situacao = situacao;
     }
 
-    public Funcionario getFuncionario() {
+    public FuncionarioRequest getFuncionario() {
         return funcionario;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
+    public void setFuncionario(FuncionarioRequest funcionario) {
         this.funcionario = funcionario;
     }
 
 
-    public PagamentoFuncionario withId(Integer id) {
+    public PagamentoFuncionarioRequest withId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public PagamentoFuncionario withValor(Double valor) {
+    public PagamentoFuncionarioRequest withValor(Double valor) {
         this.valor = valor;
         return this;
     }
 
-    public PagamentoFuncionario withData(Date data) {
+    public PagamentoFuncionarioRequest withData(Date data) {
         this.data = data;
         return this;
     }
 
-    public PagamentoFuncionario withSituacao(String situacao) {
+    public PagamentoFuncionarioRequest withSituacao(String situacao) {
         this.situacao = situacao;
         return this;
     }
 
-    public PagamentoFuncionario withFuncionario(Funcionario funcionario) {
+    public PagamentoFuncionarioRequest withFuncionario(FuncionarioRequest funcionario) {
         this.funcionario = funcionario;
         return this;
     }

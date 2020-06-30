@@ -1,265 +1,264 @@
-create database Loja_Chocolicia;
-use Loja_Chocolicia;
+CREATE DATABASE LOJA_CHOCOLICIA;
 
-
-create table estados_tbl (
-CodEstado int primary key,
-UF_Estado varchar (20),
-Estado varchar(25)
+CREATE TABLE STATES (
+STATE_UID INT PRIMARY KEY,
+STATES_UF VARCHAR (20),
+STATE VARCHAR(25)
 );
 
 
-
-create table cidades_tbl (
-CodCidade int primary key,
-CodEstado int,
-Nome_Cidade varchar (40),
-Constraint FK_Chave0 Foreign Key (CodEstado) References estados_tbl (CodEstado)
+CREATE TABLE CITIES (
+CITY_UID INT PRIMARY KEY,
+STATE_UID INT,
+CITY_NAME VARCHAR (40),
+CONSTRAINT FK_CHAVE0 FOREIGN KEY (STATE_UID) REFERENCES STATES (STATE_UID)
 );
 
 
-create table Cadastro_Cliente (
-Codi_do_Cliente int  primary key, 
-Nome varchar(40) not null,
-Data_de_Nascimento date not null, 
-Data_Cadastro datetime,
-CPF varchar (12) not null,
-Estado_Civil varchar(13) not null check (Estado_Civil in ('Solteiro(a)','Casado(a)','Viuvo(a)','Divorciado(a)')),
-Sexo varchar(1) not null check (Sexo in ('F','M')) ,
-Endereco varchar(50) not null, 
-Numero varchar(4) not null, 
-Complemento varchar(40), 
-CEP varchar (8) not null, 
-Bairro varchar (20) not null, 
-E_mail varchar(40), 
-Numero_Tel varchar (10)not null, 
-Status_Cli varchar(1) default('A') check (Status_Cli in ('A','I')) ,
-CodCidade int,
-CodEstado int,
-Constraint FK_Chave1 Foreign Key (CodCidade) References cidades_tbl (CodCidade),
-Constraint FK_Chave2 Foreign Key (CodEstado) References estados_tbl (CodEstado)
+CREATE TABLE CLIENT (
+CLIENT_UID NUMBER(38, 0)  PRIMARY KEY,
+NAME VARCHAR(40) NOT NULL,
+DATE_BIRTH DATE NOT NULL,
+REGISTRATION_DATE DATETIME,
+CPF VARCHAR (11) NOT NULL,
+MARITAL_STATUS VARCHAR(13) NOT NULL CHECK (MARITAL_STATUS IN ('SINGLE','MARRIED','WIDOWED','DIVORCED')),
+GENDER VARCHAR(1) NOT NULL CHECK (SEXO IN ('F','M')) ,
+ADDRESS_UID NUMBER(38, 0) NOT NULL,
+EMAIL VARCHAR(40),
+TELEPHONE_NUMBER VARCHAR (11)NOT NULL,
+STATUS_CLIENT CHAR(1) DEFAULT('A') CHECK (STATUS_CLI IN ('A','I')),
+CREATE_DT TIMESTAMP(6) DEFAULT SYSDATE NOT NULL,
+CONSTRAINT "UNIQUE_KEYS" UNIQUE (CLIENT_UID, ADDRESS_UID),
+CONSTRAINT "FK_CHAVE1" FOREIGN KEY (ADDRESS_UID) REFERENCES GENERAL_ADDRESS (ADDRESS_UID)
+);
+
+CREATE TABLE GENERAL_ADDRESS(
+ADDRESS_UID NUMBER (38, 0) PRIMARY KEY,
+ADDRESS_NAME VARCHAR(50) NOT NULL,
+NUMBER_HOUSE VARCHAR(4) NOT NULL,
+COMPLEMENT VARCHAR(40),
+ZIP_CODE VARCHAR (8) NOT NULL,
+DISTRICT VARCHAR (20) NOT NULL,
+CITY_UID INT,
+STATE_UID INT,
+CONSTRAINT "UNIQUE_KEYS" UNIQUE (ADDRESS_UID)
+CONSTRAINT "FK_CHAVE1" FOREIGN KEY (CITY_UID) REFERENCES CITIES (CITY_UID),
+CONSTRAINT "FK_CHAVE2" FOREIGN KEY (STATE_UID) REFERENCES STATES (STATE_UID)
+
+)
+
+CREATE TABLE PROVIDER(
+PROVIDER_UID NUMBER (38, 0) PRIMARY KEY,
+COMPANY_NAME VARCHAR (20) NOT NULL,
+SOCIAL_REASON VARCHAR (40) NOT NULL, -- 40
+CNPJ VARCHAR (14), -- TAMANHO 14
+COMPANY_WEBSITE VARCHAR(50) NULL,
+ADDRESS_UID NUMBER(38, 0) NOT NULL,
+EMAIL VARCHAR(40)NOT NULL,
+TELEPHONE_NUMBER VARCHAR  (11)NOT NULL,
+STATUS_PROVIDER CHAR(1) DEFAULT('A') CHECK (STATUS_FOR IN ('A','I')),
+CREATE_DT TIMESTAMP(6) DEFAULT SYSDATE NOT NULL,
+CONSTRAINT "UNIQUE_KEYS" UNIQUE (PROVIDER_UID, ADDRESS_UID),
+CONSTRAINT "FK_CHAVE1" FOREIGN KEY (ADDRESS_UID) REFERENCES GENERAL_ADDRESS (ADDRESS_UID)
 );
 
 
-Create table Fornecedor(
-Cod_Empresa int ,
-Nome_Fantasia varchar (20) not null, 
-Razao_Social varchar (40) not null, -- 40
-CNPJ varchar (14), -- tamanho 14
-Site_empresa varchar(50) null,
-Endereco varchar(50) not null,
-Numero varchar(4) not null, 
-Complemento varchar(40) not null, 
-CEP varchar (8) not null, 
-Bairro varchar (30) not null, 
-E_mail_Empresa varchar(40)not null, 
-Telefone_Empresa varchar  (10)not null,
-CodCidade int,
-CodEstado int,
-Data_Cadastro datetime,
-Status_For varchar(1) default('A') check (Status_For in ('A','I')),
-Constraint PK_Cod_Empre Primary Key (Cod_Empresa),
-Constraint FK_Chave3 Foreign Key (CodCidade) References cidades_tbl (CodCidade),
-Constraint FK_Chave4 Foreign Key (CodEstado) References estados_tbl (CodEstado)
+CREATE TABLE CONTACT_PROVIDER(
+CONTACT_UID INT PRIMARY KEY,
+PROVIDER_UID INT ,
+NAME VARCHAR (40) NOT NULL,
+GENDER VARCHAR(1) NOT NULL CHECK (SEXO IN ('F','M')) ,
+FAX VARCHAR(10)  NULL,
+CONTACT_EMAIL VARCHAR(40) NULL,
+TELEPHONE_CONTACT VARCHAR(11) NOT NULL,
+STATUS_CONTACT VARCHAR(1) DEFAULT('A') CHECK (STATUS_CONT IN ('A','I')),
+CREATE_DT TIMESTAMP(6) DEFAULT SYSDATE NOT NULL,
+CONSTRAINT FK_CHAVE5 FOREIGN KEY (CONTACT_UID) REFERENCES PROVIDER (PROVIDER_UID)
 );
 
-
-create table Contato_Fornecedor(
-Codi_do_contato int primary key,
-codi_Empresa int ,
-Nome varchar (40) not null, 
-Sexo varchar(1) not null check (Sexo in ('F','M')) ,
-Fax varchar(10)  null,
-Data_Cadastro datetime,
-E_mail_Fornecedor varchar(40) null,
-numero_Tel varchar(10) not null,
-Status_Cont varchar(1) default('A') check (Status_Cont in ('A','I')),
-Constraint FK_Chave5 Foreign Key (codi_Empresa) References Fornecedor (Cod_Empresa)
-);
-
-Create Table Marca
+CREATE TABLE MARCA
 (
-Cod_Marca Int ,
-Nome_Marca Varchar(30) Not Null,
-Data_Cadastro datetime,
-Status_Marca varchar(1) default('A') check (Status_Marca in ('A','I')),
-Constraint PK_Cod_Marca Primary Key (Cod_Marca)
+COD_MARCA INT ,
+NOME_MARCA VARCHAR(30) NOT NULL,
+DATA_CADASTRO DATETIME,
+STATUS_MARCA VARCHAR(1) DEFAULT('A') CHECK (STATUS_MARCA IN ('A','I')),
+CONSTRAINT PK_COD_MARCA PRIMARY KEY (COD_MARCA)
 );
 
-Create table Cad_Produto
+CREATE TABLE CAD_PRODUTO
 (
-Cod_Produto Int  not null, -- Códi do produto
-Cod_Barra_Prod VarChar(13) Not Null,
-COd_Marca int,
-Data_Cadastro datetime,
-Data_Validade datetime,
-Descricao_Prod Varchar (50) Not Null,
-Status_Prod Char(1) Default 'A' Not Null Check(Status_Prod in ('A','I')) ,
-Constraint PK_Cod_Prod Primary Key (Cod_Produto),
-Constraint FK_Chave54 Foreign Key (COd_Marca) References Marca (Cod_Marca)
+COD_PRODUTO INT  NOT NULL, -- CÓDI DO PRODUTO
+COD_BARRA_PROD VARCHAR(13) NOT NULL,
+COD_MARCA INT,
+DATA_CADASTRO DATETIME,
+DATA_VALIDADE DATETIME,
+DESCRICAO_PROD VARCHAR (50) NOT NULL,
+STATUS_PROD CHAR(1) DEFAULT 'A' NOT NULL CHECK(STATUS_PROD IN ('A','I')) ,
+CONSTRAINT PK_COD_PROD PRIMARY KEY (COD_PRODUTO),
+CONSTRAINT FK_CHAVE54 FOREIGN KEY (COD_MARCA) REFERENCES MARCA (COD_MARCA)
 );
 
-Create table Estoque(
-Cod_Estoque Int, -- Códi do Estoque
-Cod_Prod Int Not Null, -- Códi do Produto
-Estoque_Max Int Not Null, -- Estoque Máximo
-Estoque_Min Int Not Null, -- Estoque Minimo
-Estoque_Atual Int Default(0), -- Estoque Atual
-Sabor Varchar(50), -- Característica
-Unidade varchar(10), -- Unidade do produto (L Litro, P Pacote, U Unidade, G Gramas)
-Vl_Venda_Prod Decimal(15,2) Not Null, -- Valor de Venda do Produto
-Constraint PK_Cod_Estoque Primary Key(Cod_Prod,Cod_Estoque),
-Constraint FK_Chave8 Foreign Key (Cod_Prod) References Cad_Produto (Cod_Produto)
+CREATE TABLE ESTOQUE(
+COD_ESTOQUE INT, -- CÓDI DO ESTOQUE
+COD_PROD INT NOT NULL, -- CÓDI DO PRODUTO
+ESTOQUE_MAX INT NOT NULL, -- ESTOQUE MÁXIMO
+ESTOQUE_MIN INT NOT NULL, -- ESTOQUE MINIMO
+ESTOQUE_ATUAL INT DEFAULT(0), -- ESTOQUE ATUAL
+SABOR VARCHAR(50), -- CARACTERÍSTICA
+UNIDADE VARCHAR(10), -- UNIDADE DO PRODUTO (L LITRO, P PACOTE, U UNIDADE, G GRAMAS)
+VL_VENDA_PROD DECIMAL(15,2) NOT NULL, -- VALOR DE VENDA DO PRODUTO
+CONSTRAINT PK_COD_ESTOQUE PRIMARY KEY(COD_PROD,COD_ESTOQUE),
+CONSTRAINT FK_CHAVE8 FOREIGN KEY (COD_PROD) REFERENCES CAD_PRODUTO (COD_PRODUTO)
 );
 
-Create table Estoque_For(
-CodEstoque int,
-Cod_Fornecedor int,
-Cod_Produto int,
-constraint pk primary key (CodEstoque,Cod_Fornecedor,Cod_Produto),
-Constraint FK_Chave7 Foreign Key (Cod_Produto,CodEstoque) References Estoque (Cod_Prod,Cod_Estoque),
-Constraint F_Chave7 Foreign Key (Cod_Fornecedor) References  Fornecedor(Cod_Empresa)
+CREATE TABLE ESTOQUE_FOR(
+CODESTOQUE INT,
+COD_FORNECEDOR INT,
+COD_PRODUTO INT,
+CONSTRAINT PK PRIMARY KEY (CODESTOQUE,COD_FORNECEDOR,COD_PRODUTO),
+CONSTRAINT FK_CHAVE7 FOREIGN KEY (COD_PRODUTO,CODESTOQUE) REFERENCES ESTOQUE (COD_PROD,COD_ESTOQUE),
+CONSTRAINT F_CHAVE7 FOREIGN KEY (COD_FORNECEDOR) REFERENCES  FORNECEDOR(COD_EMPRESA)
 );
 
-create table Departamento(
-Cod_Departamento int primary key not null,
-Descricao varchar(40) not null,
-Data_Cadastro  datetime ,
-Status_Dep varchar(1)  Default('A') check (Status_Dep in ('A','I'))
+CREATE TABLE DEPARTAMENTO(
+COD_DEPARTAMENTO INT PRIMARY KEY NOT NULL,
+DESCRICAO VARCHAR(40) NOT NULL,
+DATA_CADASTRO  DATETIME ,
+STATUS_DEP VARCHAR(1)  DEFAULT('A') CHECK (STATUS_DEP IN ('A','I'))
 );
 
-create table Cadastro_Funcionario(
-Codi_do_funcionario int primary key,
-Nome varchar(40) not null,
-CPF varchar (12) not null,
-RG varchar (12) not null,
-Endereco varchar (40) not null,
-Numero varchar (5) null,
-Complemento varchar (50) null,
-CEP varchar(8) not null,
-Bairro varchar (20) not null,
-Codi_Departamento int not null,
-Turno_Funci Char(1) Not Null Check(Turno_Funci in('M', 'T')) ,-- Turno do funcionário
-E_mail varchar (40) null,
-Nivel_de_Ensino varchar(12)  not null check (Nivel_de_Ensino in ('Fundamental','Medio ','Técnico','Superior')),
-Sexo varchar(1) not null check (Sexo in ('F','M')) ,
-Data_de_Nascimento date not null,
-Estado_Civil varchar(14) not null check (Estado_Civil in ('Solteiro(a)','Casado(a)','Viuvo(a)','Divorciado(a)')) ,
-numero_Tel varchar (10)not null,
-Status_Func varchar(1)default('A') check (Status_Func in ('A','I')),
-CodCidade int,
-CodEstado int,
-Data_Cadastro datetime,
-Constraint FK_Chave9 Foreign Key (CodCidade) References cidades_tbl (CodCidade),
-Constraint FK_Chave10 Foreign Key (CodEstado) References estados_tbl (CodEstado),
-Constraint FK_Chave11 Foreign Key (Codi_Departamento) References Departamento(Cod_Departamento)
+CREATE TABLE CADASTRO_FUNCIONARIO(
+CODI_DO_FUNCIONARIO INT PRIMARY KEY,
+NOME VARCHAR(40) NOT NULL,
+CPF VARCHAR (12) NOT NULL,
+RG VARCHAR (12) NOT NULL,
+ENDERECO VARCHAR (40) NOT NULL,
+NUMERO VARCHAR (5) NULL,
+COMPLEMENTO VARCHAR (50) NULL,
+CEP VARCHAR(8) NOT NULL,
+BAIRRO VARCHAR (20) NOT NULL,
+CODI_DEPARTAMENTO INT NOT NULL,
+TURNO_FUNCI CHAR(1) NOT NULL CHECK(TURNO_FUNCI IN('M', 'T')) ,-- TURNO DO FUNCIONÁRIO
+E_MAIL VARCHAR (40) NULL,
+NIVEL_DE_ENSINO VARCHAR(12)  NOT NULL CHECK (NIVEL_DE_ENSINO IN ('FUNDAMENTAL','MEDIO ','TÉCNICO','SUPERIOR')),
+SEXO VARCHAR(1) NOT NULL CHECK (SEXO IN ('F','M')) ,
+DATA_DE_NASCIMENTO DATE NOT NULL,
+ESTADO_CIVIL VARCHAR(14) NOT NULL CHECK (ESTADO_CIVIL IN ('SOLTEIRO(A)','CASADO(A)','VIUVO(A)','DIVORCIADO(A)')) ,
+NUMERO_TEL VARCHAR (10)NOT NULL,
+STATUS_FUNC VARCHAR(1)DEFAULT('A') CHECK (STATUS_FUNC IN ('A','I')),
+CODCIDADE INT,
+CODESTADO INT,
+DATA_CADASTRO DATETIME,
+CONSTRAINT FK_CHAVE9 FOREIGN KEY (CODCIDADE) REFERENCES CIDADES_TBL (CODCIDADE),
+CONSTRAINT FK_CHAVE10 FOREIGN KEY (CODESTADO) REFERENCES ESTADOS_TBL (CODESTADO),
+CONSTRAINT FK_CHAVE11 FOREIGN KEY (CODI_DEPARTAMENTO) REFERENCES DEPARTAMENTO(COD_DEPARTAMENTO)
 );
 
-create table Pagamento_Func(
-Codi_Pag int primary key,
-Cod_Func int,
-Valor int,
-Data date,
-Situacao varchar(40),
-Constraint FK_Chave12 Foreign Key (Cod_Func) References Cadastro_Funcionario(Codi_do_funcionario)
-);
-
-
-create table Contas_Pagar(
-Codi_Conta int,
-Descricao_conta varchar (30) not null,
-Responsavel varchar (20) not null,
-Data_de_Pagamento date not null, 
-Data_de_Vencimento date not null, 
-Valor_da_Conta Double not null,
-Valor_Pa Double,
-StatsPag Char(2) Default('Pe') Not Null Check(StatsPag in('Pa','Pe','At')) ,-- Status de pagamento(Pa, Pendente ou Atrasado)
-Status_Cont char(1) Default ('A') Check (Status_Cont in ('A','I')) ,
-constraint PK_Con primary key (Codi_Conta)
-);
-
-create table Vendas(
-codi_venda int   primary key not null,
-Codi_do_funcionario int not null,
-Codi_do_Cliente int not null,
-data_venda Datetime default (getdate()),
-Valor_final Double not null, 
-Status_Venda varchar(1)default('A') check (Status_Venda in ('A','F')),
-Constraint FK_Chave14 Foreign Key (Codi_do_funcionario) References Cadastro_Funcionario (Codi_do_funcionario),
-Constraint FK_Chave15 Foreign Key (Codi_do_Cliente) References cadastro_cliente (Codi_do_Cliente)
+CREATE TABLE PAGAMENTO_FUNC(
+CODI_PAG INT PRIMARY KEY,
+COD_FUNC INT,
+VALOR INT,
+DATA DATE,
+SITUACAO VARCHAR(40),
+CONSTRAINT FK_CHAVE12 FOREIGN KEY (COD_FUNC) REFERENCES CADASTRO_FUNCIONARIO(CODI_DO_FUNCIONARIO)
 );
 
 
-Create Table Forma_Pag
+CREATE TABLE CONTAS_PAGAR(
+CODI_CONTA INT,
+DESCRICAO_CONTA VARCHAR (30) NOT NULL,
+RESPONSAVEL VARCHAR (20) NOT NULL,
+DATA_DE_PAGAMENTO DATE NOT NULL, 
+DATA_DE_VENCIMENTO DATE NOT NULL, 
+VALOR_DA_CONTA DOUBLE NOT NULL,
+VALOR_PA DOUBLE,
+STATSPAG CHAR(2) DEFAULT('PE') NOT NULL CHECK(STATSPAG IN('PA','PE','AT')) ,-- STATUS DE PAGAMENTO(PA, PENDENTE OU ATRASADO)
+STATUS_CONT CHAR(1) DEFAULT ('A') CHECK (STATUS_CONT IN ('A','I')) ,
+CONSTRAINT PK_CON PRIMARY KEY (CODI_CONTA)
+);
+
+CREATE TABLE VENDAS(
+CODI_VENDA INT   PRIMARY KEY NOT NULL,
+CODI_DO_FUNCIONARIO INT NOT NULL,
+CODI_DO_CLIENTE INT NOT NULL,
+DATA_VENDA DATETIME DEFAULT (GETDATE()),
+VALOR_FINAL DOUBLE NOT NULL, 
+STATUS_VENDA VARCHAR(1)DEFAULT('A') CHECK (STATUS_VENDA IN ('A','F')),
+CONSTRAINT FK_CHAVE14 FOREIGN KEY (CODI_DO_FUNCIONARIO) REFERENCES CADASTRO_FUNCIONARIO (CODI_DO_FUNCIONARIO),
+CONSTRAINT FK_CHAVE15 FOREIGN KEY (CODI_DO_CLIENTE) REFERENCES CADASTRO_CLIENTE (CODI_DO_CLIENTE)
+);
+
+
+CREATE TABLE FORMA_PAG
 (
-Cod_FormPag int ,
-Tipo_FormPag varchar(8) Not Null,
-Constraint PK_Cod_FormPag Primary Key (Cod_FormPag)
+COD_FORMPAG INT ,
+TIPO_FORMPAG VARCHAR(8) NOT NULL,
+CONSTRAINT PK_COD_FORMPAG PRIMARY KEY (COD_FORMPAG)
 );
 
-Create Table Recebimento
+CREATE TABLE RECEBIMENTO
 (
-Cod_Receb Int Not Null, -- Códi do Recebimento
-Cod_Venda Int Not Null, -- Códi da Venda
-CodForma_Pag Int Not Null, -- Códi da Forma Pagamento
-DataReceb Datetime Null, -- Data de Recebimento
-ValorReceb Decimal(15,2) Not Null, -- Valor Recebido
-Status_Pag Char(2) Not Null Check(Status_Pag in('Pa','Pe','At')), -- Status do Pagamento, Pa(Pa) Pe(Pendente) At(Atrasado)
-Satatus_Recebimento Char(1) Default 'A' Not Null Check(Satatus_Recebimento in ('A','I')), -- Status do Pagamento(Ativo ou Inativo)
-Constraint PK_CodRecebVenda Primary Key (Cod_Receb,Cod_Venda),
-Constraint FK_VendaReceb Foreign Key (Cod_Venda) References Vendas (codi_venda),
-Constraint FK_FormaPagReceb Foreign Key (CodForma_Pag) References Forma_Pag (Cod_FormPag)
+COD_RECEB INT NOT NULL, -- CÓDI DO RECEBIMENTO
+COD_VENDA INT NOT NULL, -- CÓDI DA VENDA
+CODFORMA_PAG INT NOT NULL, -- CÓDI DA FORMA PAGAMENTO
+DATARECEB DATETIME NULL, -- DATA DE RECEBIMENTO
+VALORRECEB DECIMAL(15,2) NOT NULL, -- VALOR RECEBIDO
+STATUS_PAG CHAR(2) NOT NULL CHECK(STATUS_PAG IN('PA','PE','AT')), -- STATUS DO PAGAMENTO, PA(PA) PE(PENDENTE) AT(ATRASADO)
+SATATUS_RECEBIMENTO CHAR(1) DEFAULT 'A' NOT NULL CHECK(SATATUS_RECEBIMENTO IN ('A','I')), -- STATUS DO PAGAMENTO(ATIVO OU INATIVO)
+CONSTRAINT PK_CODRECEBVENDA PRIMARY KEY (COD_RECEB,COD_VENDA),
+CONSTRAINT FK_VENDARECEB FOREIGN KEY (COD_VENDA) REFERENCES VENDAS (CODI_VENDA),
+CONSTRAINT FK_FORMAPAGRECEB FOREIGN KEY (CODFORMA_PAG) REFERENCES FORMA_PAG (COD_FORMPAG)
 );
 
-create table Detalhes_Venda(
-codi_venda int  not null,
-Codi_do_Detalhe int not null,
-Codi_do_Produto int not null,
-cod_estoque int,
-Quantidade int not null,
-Valor_Unitário Double not null,
-Status_Item_Venda Char(1)Default 'A' Not Null Check(Status_Item_Venda in ('A','I')) ,
-constraint PK_detalhe primary key (codi_venda,Codi_do_Detalhe), 
-Constraint FK_Chave16 Foreign Key (Codi_venda) References vendas (codi_venda),
-Constraint FK_Chave17 Foreign Key (Codi_do_Produto,cod_estoque) References estoque (Cod_Prod,Cod_Estoque)
+CREATE TABLE DETALHES_VENDA(
+CODI_VENDA INT  NOT NULL,
+CODI_DO_DETALHE INT NOT NULL,
+CODI_DO_PRODUTO INT NOT NULL,
+COD_ESTOQUE INT,
+QUANTIDADE INT NOT NULL,
+VALOR_UNITÁRIO DOUBLE NOT NULL,
+STATUS_ITEM_VENDA CHAR(1)DEFAULT 'A' NOT NULL CHECK(STATUS_ITEM_VENDA IN ('A','I')) ,
+CONSTRAINT PK_DETALHE PRIMARY KEY (CODI_VENDA,CODI_DO_DETALHE), 
+CONSTRAINT FK_CHAVE16 FOREIGN KEY (CODI_VENDA) REFERENCES VENDAS (CODI_VENDA),
+CONSTRAINT FK_CHAVE17 FOREIGN KEY (CODI_DO_PRODUTO,COD_ESTOQUE) REFERENCES ESTOQUE (COD_PROD,COD_ESTOQUE)
 );
 
-Create table Cad_Login(
-Cod_fun int not null,
-cad_login varchar (20)not null, 
-senha varchar (20) not null,
-Data_Cadastro datetime,
-Nivel  varchar(15)default('2') check (Nivel in ('1','2')),
-Status_Log varchar(1)default('A') check (Status_Log in ('A','I')),
-Constraint FK_Chave19 Foreign Key (cod_fun) References Cadastro_Funcionario (Codi_do_funcionario)
+CREATE TABLE CAD_LOGIN(
+COD_FUN INT NOT NULL,
+CAD_LOGIN VARCHAR (20)NOT NULL, 
+SENHA VARCHAR (20) NOT NULL,
+DATA_CADASTRO DATETIME,
+NIVEL  VARCHAR(15)DEFAULT('2') CHECK (NIVEL IN ('1','2')),
+STATUS_LOG VARCHAR(1)DEFAULT('A') CHECK (STATUS_LOG IN ('A','I')),
+CONSTRAINT FK_CHAVE19 FOREIGN KEY (COD_FUN) REFERENCES CADASTRO_FUNCIONARIO (CODI_DO_FUNCIONARIO)
 );
 
-Create table Compra (
-Cod_Compra Int  primary key,-- Códi da Compra
-Cod_Forne Int Not Null, -- Códi do Fornecedor
-Vl_Compra Double Not Null,-- Valor da compra
-Data_Compra Datetime Default(GetDate()) Not Null,-- Data de compra
-Status_Com Char(1) Check(Status_Com in ('A','I')), -- Status da Compra(Ativo ou Inativo)
-Constraint FK_Cod_Forne Foreign Key(Cod_Forne) References Fornecedor(Cod_Empresa)
+CREATE TABLE COMPRA (
+COD_COMPRA INT  PRIMARY KEY,-- CÓDI DA COMPRA
+COD_FORNE INT NOT NULL, -- CÓDI DO FORNECEDOR
+VL_COMPRA DOUBLE NOT NULL,-- VALOR DA COMPRA
+DATA_COMPRA DATETIME DEFAULT(GETDATE()) NOT NULL,-- DATA DE COMPRA
+STATUS_COM CHAR(1) CHECK(STATUS_COM IN ('A','I')), -- STATUS DA COMPRA(ATIVO OU INATIVO)
+CONSTRAINT FK_COD_FORNE FOREIGN KEY(COD_FORNE) REFERENCES FORNECEDOR(COD_EMPRESA)
 );
 
-Create table Item_Compra(
-Cod_Item_Compra int, -- Códi do Item Compra
-Cod_Compra int Not Null, -- Códi da Compra
-Cod_Prod int Not Null, -- Códi do Produto
-Cod_Estoque int Not Null, -- Códi do Estoque
-Qtd_Prod int Not Null, -- Quantidade do Produto
-Vl_Unitario Double Not Null, -- Valor Unitário do Produto
-Unidade varchar(10) Not Null,-- Unidade do produto (L Litro, P Pacote, U Unidade, G Gramas)
-Status_Item_Com Char(1) Check(Status_Item_Com in ('A','I')), -- Status do Item(Ativo ou Inativo)
-Constraint PK_Cod_Item_Compra primary key(Cod_Item_Compra, Cod_Compra),
-Constraint FK_Cod_Compra Foreign Key(Cod_Compra) References Compra(Cod_Compra),
-Constraint FK_Cod_Prod foreign key (Cod_Prod) references Cad_Produto (Cod_Produto)
+CREATE TABLE ITEM_COMPRA(
+COD_ITEM_COMPRA INT, -- CÓDI DO ITEM COMPRA
+COD_COMPRA INT NOT NULL, -- CÓDI DA COMPRA
+COD_PROD INT NOT NULL, -- CÓDI DO PRODUTO
+COD_ESTOQUE INT NOT NULL, -- CÓDI DO ESTOQUE
+QTD_PROD INT NOT NULL, -- QUANTIDADE DO PRODUTO
+VL_UNITARIO DOUBLE NOT NULL, -- VALOR UNITÁRIO DO PRODUTO
+UNIDADE VARCHAR(10) NOT NULL,-- UNIDADE DO PRODUTO (L LITRO, P PACOTE, U UNIDADE, G GRAMAS)
+STATUS_ITEM_COM CHAR(1) CHECK(STATUS_ITEM_COM IN ('A','I')), -- STATUS DO ITEM(ATIVO OU INATIVO)
+CONSTRAINT PK_COD_ITEM_COMPRA PRIMARY KEY(COD_ITEM_COMPRA, COD_COMPRA),
+CONSTRAINT FK_COD_COMPRA FOREIGN KEY(COD_COMPRA) REFERENCES COMPRA(COD_COMPRA),
+CONSTRAINT FK_COD_PROD FOREIGN KEY (COD_PROD) REFERENCES CAD_PRODUTO (COD_PRODUTO)
 );
 
-create table Fale_Conosco2 (
-cod_Fale int ,
-Nome varchar(40),
-email varchar(40),
-Descricao varchar(2048)
+CREATE TABLE FALE_CONOSCO2 (
+COD_FALE INT ,
+NOME VARCHAR(40),
+EMAIL VARCHAR(40),
+DESCRICAO VARCHAR(2048)
 );

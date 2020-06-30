@@ -1,4 +1,4 @@
-package com.jorgesoares.projetotcc.domain;
+package com.jorgesoares.projetotcc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,8 +19,8 @@ public class Estado implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String  uf;
-    private String  nomeEstado;
+    private String uf;
+    private String nomeEstado;
 
     @JsonIgnore
     @OneToMany(mappedBy = "nomeEstado")

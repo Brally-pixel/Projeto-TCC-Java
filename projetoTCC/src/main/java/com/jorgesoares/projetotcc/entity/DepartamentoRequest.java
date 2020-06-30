@@ -1,4 +1,4 @@
-package com.jorgesoares.projetotcc.domain.empresa;
+package com.jorgesoares.projetotcc.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,20 +13,20 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Departamento implements Serializable {
+public class DepartamentoRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String  descricao;
-    private Date    dataCadastro;
-    private String  status;
+    private String descricao;
+    private Date dataCadastro;
+    private String status;
 
     @JsonIgnore
     @OneToMany(mappedBy = "Funcionarios")
-    private List<Funcionario> funcionarios = new ArrayList<>();
+    private List<FuncionarioRequest> funcionarios = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -60,35 +60,35 @@ public class Departamento implements Serializable {
         this.status = status;
     }
 
-    public List<Funcionario> getFuncionarios() {
+    public List<FuncionarioRequest> getFuncionarios() {
         return funcionarios;
     }
 
-    public void setFuncionarios(List<Funcionario> funcionarios) {
+    public void setFuncionarios(List<FuncionarioRequest> funcionarios) {
         this.funcionarios = funcionarios;
     }
 
-    public Departamento withId(Integer id) {
+    public DepartamentoRequest withId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public Departamento withDescricao(String descricao) {
+    public DepartamentoRequest withDescricao(String descricao) {
         this.descricao = descricao;
         return this;
     }
 
-    public Departamento withDataCadastro(Date dataCadastro) {
+    public DepartamentoRequest withDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
         return this;
     }
 
-    public Departamento withStatus(String status) {
+    public DepartamentoRequest withStatus(String status) {
         this.status = status;
         return this;
     }
 
-    public Departamento withFuncionarios(List<Funcionario> funcionarios) {
+    public DepartamentoRequest withFuncionarios(List<FuncionarioRequest> funcionarios) {
         this.funcionarios = funcionarios;
         return this;
     }

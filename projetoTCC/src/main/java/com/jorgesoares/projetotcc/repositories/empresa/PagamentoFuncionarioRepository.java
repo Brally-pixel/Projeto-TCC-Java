@@ -1,7 +1,7 @@
 package com.jorgesoares.projetotcc.repositories.empresa;
 
-import com.jorgesoares.projetotcc.domain.empresa.PagamentoFuncionario;
+import com.jorgesoares.projetotcc.entity.PagamentoFuncionarioRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PagamentoFuncionarioRepository extends JpaRepository<PagamentoFuncionario, Long> {
+public interface PagamentoFuncionarioRepository extends JpaRepository<PagamentoFuncionarioRequest, Long> {
 }

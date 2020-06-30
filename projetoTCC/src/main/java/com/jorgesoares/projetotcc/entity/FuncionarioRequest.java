@@ -1,7 +1,5 @@
-package com.jorgesoares.projetotcc.domain.empresa;
+package com.jorgesoares.projetotcc.entity;
 
-import com.jorgesoares.projetotcc.domain.Cidade;
-import com.jorgesoares.projetotcc.domain.Estado;
 import com.jorgesoares.projetotcc.domain.enums.NivelEnsino;
 import com.jorgesoares.projetotcc.domain.enums.Turno;
 
@@ -16,30 +14,30 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Funcionario implements Serializable {
+public class FuncionarioRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer     id;
-    private String      nome;
-    private String      cpf;
-    private String      rg;
-    private String      endereco;
-    private String      numero;
-    private String      complemento;
-    private Integer     cep;
-    private String      bairro;
-    private Turno       turno;
-    private String      email;
+    private Integer id;
+    private String nome;
+    private String cpf;
+    private String rg;
+    private String endereco;
+    private String numero;
+    private String complemento;
+    private Integer cep;
+    private String bairro;
+    private Turno turno;
+    private String email;
     private NivelEnsino nivelEnsino;
-    private String      sexo;
-    private Date        dataNascimento;
-    private String      estadoCivil;
-    private String      numeroTelefone;
-    private String      statusFuncio;
-    private Date        dataCadastro;
+    private String sexo;
+    private Date dataNascimento;
+    private String estadoCivil;
+    private String numeroTelefone;
+    private String statusFuncio;
+    private Date dataCadastro;
 
     @OneToOne
     @JoinColumn(name = "cidade_id")
@@ -51,7 +49,7 @@ public class Funcionario implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "departamento_id")
-    private Departamento departamento;
+    private DepartamentoRequest departamento;
 
     public Integer getId() {
         return id;
@@ -213,115 +211,115 @@ public class Funcionario implements Serializable {
         this.estado = estado;
     }
 
-    public Departamento getDepartamento() {
+    public DepartamentoRequest getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(Departamento departamento) {
+    public void setDepartamento(DepartamentoRequest departamento) {
         this.departamento = departamento;
     }
 
-    public Funcionario withId(Integer id) {
+    public FuncionarioRequest withId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public Funcionario withNome(String nome) {
+    public FuncionarioRequest withNome(String nome) {
         this.nome = nome;
         return this;
     }
 
-    public Funcionario withCpf(String cpf) {
+    public FuncionarioRequest withCpf(String cpf) {
         this.cpf = cpf;
         return this;
     }
 
-    public Funcionario withRg(String rg) {
+    public FuncionarioRequest withRg(String rg) {
         this.rg = rg;
         return this;
     }
 
-    public Funcionario withEndereco(String endereco) {
+    public FuncionarioRequest withEndereco(String endereco) {
         this.endereco = endereco;
         return this;
     }
 
-    public Funcionario withNumero(String numero) {
+    public FuncionarioRequest withNumero(String numero) {
         this.numero = numero;
         return this;
     }
 
-    public Funcionario withComplemento(String complemento) {
+    public FuncionarioRequest withComplemento(String complemento) {
         this.complemento = complemento;
         return this;
     }
 
-    public Funcionario withCep(Integer cep) {
+    public FuncionarioRequest withCep(Integer cep) {
         this.cep = cep;
         return this;
     }
 
-    public Funcionario withBairro(String bairro) {
+    public FuncionarioRequest withBairro(String bairro) {
         this.bairro = bairro;
         return this;
     }
 
-    public Funcionario withTurno(Turno turno) {
+    public FuncionarioRequest withTurno(Turno turno) {
         this.turno = turno;
         return this;
     }
 
-    public Funcionario withEmail(String email) {
+    public FuncionarioRequest withEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public Funcionario withNivelEnsino(NivelEnsino nivelEnsino) {
+    public FuncionarioRequest withNivelEnsino(NivelEnsino nivelEnsino) {
         this.nivelEnsino = nivelEnsino;
         return this;
     }
 
-    public Funcionario withSexo(String sexo) {
+    public FuncionarioRequest withSexo(String sexo) {
         this.sexo = sexo;
         return this;
     }
 
-    public Funcionario withDataNascimento(Date dataNascimento) {
+    public FuncionarioRequest withDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
         return this;
     }
 
-    public Funcionario withEstadoCivil(String estadoCivil) {
+    public FuncionarioRequest withEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
         return this;
     }
 
-    public Funcionario withNumeroTelefone(String numeroTelefone) {
+    public FuncionarioRequest withNumeroTelefone(String numeroTelefone) {
         this.numeroTelefone = numeroTelefone;
         return this;
     }
 
-    public Funcionario withStatusFuncio(String statusFuncio) {
+    public FuncionarioRequest withStatusFuncio(String statusFuncio) {
         this.statusFuncio = statusFuncio;
         return this;
     }
 
-    public Funcionario withDataCadastro(Date dataCadastro) {
+    public FuncionarioRequest withDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
         return this;
     }
 
-    public Funcionario withCidade(Cidade cidade) {
+    public FuncionarioRequest withCidade(Cidade cidade) {
         this.cidade = cidade;
         return this;
     }
 
-    public Funcionario withEstado(Estado estado) {
+    public FuncionarioRequest withEstado(Estado estado) {
         this.estado = estado;
         return this;
     }
 
-    public Funcionario withDepartamento(Departamento departamento) {
+    public FuncionarioRequest withDepartamento(DepartamentoRequest departamento) {
         this.departamento = departamento;
         return this;
     }

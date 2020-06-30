@@ -1,30 +1,36 @@
-package com.jorgesoares.projetotcc.domain.fornecedor;
+package com.jorgesoares.projetotcc.entity;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import java.io.Serializable;
+import javax.persistence.Table;
 import java.util.Date;
 
-public class ContatoFornecedor implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Entity
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "CONTACT_PROVIDER")
+public class ContactProvider {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idContato;
-    private String  nomeContato;
-    private String  sexo;
+    private String nomeContato;
+    private String sexo;
     private Integer fax;
-    private Date    dataContato;
-    private String  emailContato;
-    private String  telefone;
-    private String  celular;
-    private String  status;
+    private Date dataContato;
+    private String emailContato;
+    private String telefone;
+    private String celular;
+    private String status;
 
     @JoinColumn(name = "ID_Fornecedor")
-    private Fornecedor fornecedor;
+    private Provider fornecedor;
 
     public Integer getIdContato() {
         return idContato;
@@ -98,60 +104,60 @@ public class ContatoFornecedor implements Serializable {
         this.status = status;
     }
 
-    public Fornecedor getFornecedor() {
+    public Provider getFornecedor() {
         return fornecedor;
     }
 
-    public void setFornecedor(Fornecedor fornecedor) {
+    public void setFornecedor(Provider fornecedor) {
         this.fornecedor = fornecedor;
     }
 
-    public ContatoFornecedor withIdContato(Integer idContato) {
+    public ContactProvider withIdContato(Integer idContato) {
         this.idContato = idContato;
         return this;
     }
 
-    public ContatoFornecedor withNomeContato(String nomeContato) {
+    public ContactProvider withNomeContato(String nomeContato) {
         this.nomeContato = nomeContato;
         return this;
     }
 
-    public ContatoFornecedor withSexo(String sexo) {
+    public ContactProvider withSexo(String sexo) {
         this.sexo = sexo;
         return this;
     }
 
-    public ContatoFornecedor withFax(Integer fax) {
+    public ContactProvider withFax(Integer fax) {
         this.fax = fax;
         return this;
     }
 
-    public ContatoFornecedor withDataContato(Date dataContato) {
+    public ContactProvider withDataContato(Date dataContato) {
         this.dataContato = dataContato;
         return this;
     }
 
-    public ContatoFornecedor withEmailContato(String emailContato) {
+    public ContactProvider withEmailContato(String emailContato) {
         this.emailContato = emailContato;
         return this;
     }
 
-    public ContatoFornecedor withTelefone(String telefone) {
+    public ContactProvider withTelefone(String telefone) {
         this.telefone = telefone;
         return this;
     }
 
-    public ContatoFornecedor withCelular(String celular) {
+    public ContactProvider withCelular(String celular) {
         this.celular = celular;
         return this;
     }
 
-    public ContatoFornecedor withStatus(String status) {
+    public ContactProvider withStatus(String status) {
         this.status = status;
         return this;
     }
 
-    public ContatoFornecedor withFornecedor(Fornecedor fornecedor) {
+    public ContactProvider withFornecedor(Provider fornecedor) {
         this.fornecedor = fornecedor;
         return this;
     }

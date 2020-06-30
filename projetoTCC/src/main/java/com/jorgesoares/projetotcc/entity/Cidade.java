@@ -1,4 +1,4 @@
-package com.jorgesoares.projetotcc.domain;
+package com.jorgesoares.projetotcc.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ public class Cidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String  nome;
+    private String nome;
 
     @ManyToOne
     @JoinColumn(name = "estado_id")
