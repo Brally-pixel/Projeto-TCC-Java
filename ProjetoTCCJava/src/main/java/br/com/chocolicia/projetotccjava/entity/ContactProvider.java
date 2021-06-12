@@ -32,6 +32,8 @@ public class ContactProvider implements Serializable {
 
     private LocalDateTime createDate;
 
+
+
     public Long getContactProviderUid() {
         return contactProviderUid;
     }
