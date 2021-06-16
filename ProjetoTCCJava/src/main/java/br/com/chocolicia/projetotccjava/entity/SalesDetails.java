@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -19,8 +21,10 @@ public class SalesDetails implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long salesDetailsUid;
 
+    @ManyToOne
     private Sales sales;
 
+    @OneToOne
     private Product product;
 
     private Integer quantity;

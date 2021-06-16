@@ -10,8 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Employee implements Serializable {
@@ -36,6 +39,7 @@ public class Employee implements Serializable {
 
     private RegisterStatus registerStatus;
 
+    @OneToOne
     private Department department;
 
     private String turn;
@@ -46,6 +50,28 @@ public class Employee implements Serializable {
 
     private LocalDateTime createDate;
 
+    @OneToMany
+    private List<Adress> adress;
+
+    public Employee() {
+    }
+
+    public Employee(Long employeeUid, String name, String bithDate, String cpf, String rg, MaritalStatus maritalStatus, String gender, RegisterStatus registerStatus, Department department, String turn, String email, LevelEducation levelEducation, LocalDateTime createDate, List<Adress> adress) {
+        this.employeeUid = employeeUid;
+        this.name = name;
+        this.bithDate = bithDate;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.maritalStatus = maritalStatus;
+        this.gender = gender;
+        this.registerStatus = registerStatus;
+        this.department = department;
+        this.turn = turn;
+        this.email = email;
+        this.levelEducation = levelEducation;
+        this.createDate = createDate;
+        this.adress = adress;
+    }
 
     public Long getEmployeeUid() {
         return employeeUid;
@@ -149,6 +175,14 @@ public class Employee implements Serializable {
 
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
+    }
+
+    public List<Adress> getAdress() {
+        return adress;
+    }
+
+    public void setAdress(List<Adress> adress) {
+        this.adress = adress;
     }
 
     @Override

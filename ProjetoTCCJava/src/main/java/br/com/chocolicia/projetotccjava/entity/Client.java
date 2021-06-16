@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Client implements Serializable {
@@ -20,26 +22,33 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clientUid;
     private String name;
-    private String bithDate;
-    private String cpf;
-    private MaritalStatus maritalStatus;
-    private String gender;
-    private RegisterStatus registerStatus;
 
+    private String bithDate;
+
+    private String cpf;
+
+    private MaritalStatus maritalStatus;
+
+    private String gender;
+
+    @OneToMany
+    private List<Adress> adress;
+
+    private RegisterStatus registerStatus;
 
     public Client() {
     }
 
-    public Client(Long clientUid, String name, String bithDate, String cpf, MaritalStatus maritalStatus, String gender, RegisterStatus registerStatus) {
+    public Client(Long clientUid, String name, String bithDate, String cpf, MaritalStatus maritalStatus, String gender, List<Adress> adress, RegisterStatus registerStatus) {
         this.clientUid = clientUid;
         this.name = name;
         this.bithDate = bithDate;
         this.cpf = cpf;
         this.maritalStatus = maritalStatus;
         this.gender = gender;
+        this.adress = adress;
         this.registerStatus = registerStatus;
     }
-
 
     public Long getClientUid() {
         return clientUid;
@@ -95,6 +104,14 @@ public class Client implements Serializable {
 
     public void setRegisterStatus(RegisterStatus registerStatus) {
         this.registerStatus = registerStatus;
+    }
+
+    public List<Adress> getAdress() {
+        return adress;
+    }
+
+    public void setAdress(List<Adress> adress) {
+        this.adress = adress;
     }
 
     @Override

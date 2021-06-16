@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -20,7 +21,8 @@ public class ContactProvider implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long contactProviderUid;
 
-    private Long providerUid;
+    @ManyToOne
+    private Provider provider;
 
     private String contactName;
 
@@ -44,12 +46,12 @@ public class ContactProvider implements Serializable {
         this.contactProviderUid = contactProviderUid;
     }
 
-    public Long getProviderUid() {
-        return providerUid;
+    public Provider getProvider() {
+        return provider;
     }
 
-    public void setProviderUid(Long providerUid) {
-        this.providerUid = providerUid;
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 
     public String getContactName() {

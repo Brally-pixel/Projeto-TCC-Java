@@ -21,7 +21,7 @@ public class City implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "estado_id")
+    @JoinColumn(name = "stateUid")
     private State state;
 
     private String name;

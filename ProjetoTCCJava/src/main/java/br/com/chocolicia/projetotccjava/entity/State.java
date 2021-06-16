@@ -20,16 +20,16 @@ public class State implements Serializable {
 
     private String uf;
 
-    private String nome;
+    private String name;
 
 
     protected State() {
     }
 
-    public State(Integer id , String uf, String nome) {
+    public State(Integer id , String uf, String name) {
         this.id = id;
         this.uf = uf;
-        this.nome = nome;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -40,12 +40,12 @@ public class State implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String nome) {
+        this.name = nome;
     }
 
     public String getUf() {

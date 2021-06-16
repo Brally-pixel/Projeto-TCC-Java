@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Provider implements Serializable {
@@ -29,9 +31,24 @@ public class Provider implements Serializable {
 
     private String email;
 
+    @OneToMany
+    private List<Adress> adress;
 
     private LocalDateTime createDate;
 
+    public Provider() {
+    }
+
+    public Provider(Long providerUid, String companyName, String socialReason, String cnpj, String companyWebSite, String email, List<Adress> adress, LocalDateTime createDate) {
+        this.providerUid = providerUid;
+        this.companyName = companyName;
+        this.socialReason = socialReason;
+        this.cnpj = cnpj;
+        this.companyWebSite = companyWebSite;
+        this.email = email;
+        this.adress = adress;
+        this.createDate = createDate;
+    }
 
     public Long getProviderUid() {
         return providerUid;
@@ -87,6 +104,14 @@ public class Provider implements Serializable {
 
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
+    }
+
+    public List<Adress> getAdress() {
+        return adress;
+    }
+
+    public void setAdress(List<Adress> adress) {
+        this.adress = adress;
     }
 
     @Override
