@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class Estado implements Serializable {
+public class State implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,10 +23,10 @@ public class Estado implements Serializable {
     private String nome;
 
 
-    protected Estado() {
+    protected State() {
     }
 
-    public Estado(Integer id , String uf, String nome) {
+    public State(Integer id , String uf, String nome) {
         this.id = id;
         this.uf = uf;
         this.nome = nome;

@@ -4,6 +4,7 @@ import br.com.chocolicia.projetotccjava.domain.enums.SpecialDate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@Entity
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;

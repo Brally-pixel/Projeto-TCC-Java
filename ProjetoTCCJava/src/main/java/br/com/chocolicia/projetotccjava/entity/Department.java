@@ -20,12 +20,44 @@ public class Department implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long departmentUid;
 
-    private String Nome;
+    private String name;
 
     private RegisterStatus registerStatus;
 
     private LocalDateTime createDate;
 
+
+    public Long getDepartmentUid() {
+        return departmentUid;
+    }
+
+    public void setDepartmentUid(Long departmentUid) {
+        this.departmentUid = departmentUid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public RegisterStatus getRegisterStatus() {
+        return registerStatus;
+    }
+
+    public void setRegisterStatus(RegisterStatus registerStatus) {
+        this.registerStatus = registerStatus;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
 
     @Override
     public boolean equals(Object obj) {

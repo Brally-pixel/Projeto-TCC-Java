@@ -4,12 +4,14 @@ import br.com.chocolicia.projetotccjava.domain.enums.RegisterStatus;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Entity
 public class ContactProvider implements Serializable {
 
     private static final long serialVersionUID = 1L;

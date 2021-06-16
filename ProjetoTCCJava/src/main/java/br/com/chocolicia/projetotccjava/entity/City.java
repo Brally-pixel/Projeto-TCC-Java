@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Entity
-public class Cidade implements Serializable {
+public class City implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,19 +22,19 @@ public class Cidade implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "estado_id")
-    private Estado estado;
+    private State state;
 
-    private String nome;
+    private String name;
 
 
 
-    public Cidade(Integer id, String nome, Estado estado) {
+    public City(Integer id, String name, State state) {
         this.id = id;
-        this.estado = estado;
-        this.nome = nome;
+        this.state = state;
+        this.name = name;
     }
 
-    public Cidade() {
+    public City() {
     }
 
     public Integer getId() {
@@ -45,20 +45,20 @@ public class Cidade implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public State getEstado() {
+        return state;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setEstado(State state) {
+        this.state = state;
     }
 
     @Override
